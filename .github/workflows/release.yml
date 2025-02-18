@@ -33,17 +33,29 @@ jobs:
           git submodule update --init --recursive
       - name: 'Configure'
         run: |
-          mkdir -p build
-          cmake -B build
+          mkdir -p build-pico
+          cmake -B build-pico
+          mkdir -p build-pico2
+          cmake -B build-pico2 -DPICO_BOARD=pico2
       - name: 'Build'
         run: |
-          make -C build
-      - name: Upload uf2
+          make -C build-pico
+          make -C build-pico2
+      - name: Upload uf2 for Pico
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_name: pico-sexa-uart-bridge-${{ inputs.tag }}.uf2
-          asset_path: build/uart_bridge.uf2
+          asset_path: build-pico/uart_bridge.uf2
+          asset_content_type: application/octet-stream
+      - name: Upload uf2 for Pico 2
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_name: pico2-sexa-uart-bridge-${{ inputs.tag }}.uf2
+          asset_path: build-pico2/uart_bridge.uf2
           asset_content_type: application/octet-stream
