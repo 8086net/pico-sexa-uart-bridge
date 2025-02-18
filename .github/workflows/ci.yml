@@ -28,14 +28,22 @@ jobs:
           git submodule update --init --recursive
       - name: 'Configure'
         run: |
-          mkdir -p build
-          cmake -B build
+          mkdir -p build-pico{,2}
+          cmake -B build-pico
+          cmake -B build-pico2 -DPICO_BOARD=pico2 
       - name: 'Build'
         run: |
-          make -C build
-      - name: 'Upload binary'
+          make -C build-pico
+          make -C build-pico2
+      - name: 'Upload Pico binary'
         uses: actions/upload-artifact@v3
         with:
           name: pico-uart-bridge.uf2
-          path: build/uart_bridge.uf2
+          path: build-pico/uart_bridge.uf2
+          retention-days: 5
+      - name: 'Upload Pico 2 binary'
+        uses: actions/upload-artifact@v3
+        with:
+          name: pico2-uart-bridge.uf2
+          path: build-pico2/uart_bridge.uf2
           retention-days: 5
