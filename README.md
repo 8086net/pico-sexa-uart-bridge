@@ -1,8 +1,8 @@
 Raspberry Pi Pico USB-UART and I2C Bridge
 =================================
-This project converts the Raspberry Pi Pico(or any RP2040) into a USB to 6 UART and I2C board with activity LEDs.
+This project converts the Raspberry Pi Pico/Pico 2 (or any RP2040/RP2350/RP2354) into a USB to 6 UART and I2C board with activity LEDs.
 
-Supporting hardware, the "PicoUART6" is available on [Tindie](https://www.tindie.com/products/32981/) and [eBay](https://www.ebay.co.uk/itm/204561279568).
+Supporting hardware, the "PicoUART6" is available on [Lectronz]([https://www.tindie.com/products/32981/](https://lectronz.com/products/picouart6)) and [ThePiHut]([https://www.ebay.co.uk/itm/204561279568](https://thepihut.com/products/picouart6)).
 
 The 6 USB UART are compatible with the builtin USB CDC class drivers in Linux, macOS, and >= Windows 10.
 
